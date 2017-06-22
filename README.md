@@ -1,2 +1,2 @@
-# small-groups
-Small groups plugin for WordPress
+# Simple Events Plugin for WordPress
+

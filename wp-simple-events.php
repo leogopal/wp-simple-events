@@ -22,19 +22,19 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-class WPSimpleEvents {
+class WP_Simple_Events {
 
 	/** Refers to a single instance of this class. */
 	private static $instance = null;
 
-	private $version = '1.0.0';
+	private $version = '0.0.1';
 
 	public $prefix = 'wpse_';
 
 	/**
 	 * Creates or returns an instance of this class.
 	 *
-	 * @return  WPSimpleEvents A single instance of this class.
+	 * @return  WP_Simple_Events A single instance of this class.
 	 */
 	public static function instance() {
 
@@ -50,9 +50,12 @@ class WPSimpleEvents {
 	 */
 	private function __construct() {
 		$this->define_constants();
-		$this->init();
+		$this->init_core();
 	}
 
+	/**
+	 * Defining the plugin constants
+	 */
 	public function define_constants() {
 		$this->define( 'WPSE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 		$this->define( 'WPSE_PREFIX', $this->prefix );
@@ -71,11 +74,15 @@ class WPSimpleEvents {
 		}
 	}
 
-	public function init() {
+	/**
+	 * Instantiate the plugin core and load main plugin file.
+	 */
+	public function init_core() {
 		include_once( 'includes/class-wp-simple-events-plugin.php' );
-		new WPSE_Plugin();
+		new WP_Simple_Events_Plugin();
 	}
 
 } // end class
 
-WPSimpleEvents::instance();
+// Load Plugin for Simple Events
+WP_Simple_Events::instance();
